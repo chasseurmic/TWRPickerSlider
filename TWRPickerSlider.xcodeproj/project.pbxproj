@@ -27,6 +27,8 @@
 		1582D00819AF89260056BD40 /* TWRPickerSliderHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1582D00719AF89260056BD40 /* TWRPickerSliderHeaderView.xib */; };
 		1582D00B19AF8CB80056BD40 /* input_icon_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 1582D00919AF8CB80056BD40 /* input_icon_select.png */; };
 		1582D00C19AF8CB80056BD40 /* input_icon_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1582D00A19AF8CB80056BD40 /* input_icon_select@2x.png */; };
+		15BC5C1419AF98360020BDFF /* TWRSliderStackedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BC5C1319AF98360020BDFF /* TWRSliderStackedView.m */; };
+		15BC5C1719AFD50F0020BDFF /* TWRSliderContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BC5C1619AFD50F0020BDFF /* TWRSliderContainerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,10 @@
 		1582D00719AF89260056BD40 /* TWRPickerSliderHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWRPickerSliderHeaderView.xib; sourceTree = "<group>"; };
 		1582D00919AF8CB80056BD40 /* input_icon_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input_icon_select.png; sourceTree = "<group>"; };
 		1582D00A19AF8CB80056BD40 /* input_icon_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_icon_select@2x.png"; sourceTree = "<group>"; };
+		15BC5C1219AF98360020BDFF /* TWRSliderStackedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRSliderStackedView.h; sourceTree = "<group>"; };
+		15BC5C1319AF98360020BDFF /* TWRSliderStackedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRSliderStackedView.m; sourceTree = "<group>"; };
+		15BC5C1519AFD50F0020BDFF /* TWRSliderContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRSliderContainerView.h; sourceTree = "<group>"; };
+		15BC5C1619AFD50F0020BDFF /* TWRSliderContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRSliderContainerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,14 +133,12 @@
 		1582CFCE19AF7BEC0056BD40 /* TWRPickerSlider */ = {
 			isa = PBXGroup;
 			children = (
+				15BC5C1919AFDAFB0020BDFF /* Controller */,
+				15BC5C1819AFDAED0020BDFF /* Demo Objects */,
 				1582D00319AF89010056BD40 /* PickerSlider */,
 				1582CFD719AF7BEC0056BD40 /* TWRAppDelegate.h */,
 				1582CFD819AF7BEC0056BD40 /* TWRAppDelegate.m */,
 				1582CFDA19AF7BEC0056BD40 /* Main.storyboard */,
-				1582CFDD19AF7BEC0056BD40 /* TWRViewController.h */,
-				1582CFDE19AF7BEC0056BD40 /* TWRViewController.m */,
-				1582D00019AF84AB0056BD40 /* TWRDemoObject.h */,
-				1582D00119AF84AB0056BD40 /* TWRDemoObject.m */,
 				1582CFE019AF7BEC0056BD40 /* Images.xcassets */,
 				1582CFCF19AF7BEC0056BD40 /* Supporting Files */,
 			);
@@ -180,8 +184,30 @@
 				1582D00419AF891C0056BD40 /* TWRPickerSliderHeaderView.h */,
 				1582D00519AF891C0056BD40 /* TWRPickerSliderHeaderView.m */,
 				1582D00719AF89260056BD40 /* TWRPickerSliderHeaderView.xib */,
+				15BC5C1219AF98360020BDFF /* TWRSliderStackedView.h */,
+				15BC5C1319AF98360020BDFF /* TWRSliderStackedView.m */,
+				15BC5C1519AFD50F0020BDFF /* TWRSliderContainerView.h */,
+				15BC5C1619AFD50F0020BDFF /* TWRSliderContainerView.m */,
 			);
 			name = PickerSlider;
+			sourceTree = "<group>";
+		};
+		15BC5C1819AFDAED0020BDFF /* Demo Objects */ = {
+			isa = PBXGroup;
+			children = (
+				1582D00019AF84AB0056BD40 /* TWRDemoObject.h */,
+				1582D00119AF84AB0056BD40 /* TWRDemoObject.m */,
+			);
+			name = "Demo Objects";
+			sourceTree = "<group>";
+		};
+		15BC5C1919AFDAFB0020BDFF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1582CFDD19AF7BEC0056BD40 /* TWRViewController.h */,
+				1582CFDE19AF7BEC0056BD40 /* TWRViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,11 +312,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1582D00619AF891C0056BD40 /* TWRPickerSliderHeaderView.m in Sources */,
+				15BC5C1719AFD50F0020BDFF /* TWRSliderContainerView.m in Sources */,
 				1582CFDF19AF7BEC0056BD40 /* TWRViewController.m in Sources */,
 				1582CFD919AF7BEC0056BD40 /* TWRAppDelegate.m in Sources */,
 				1582CFFF19AF7C140056BD40 /* TWRPickerSlider.m in Sources */,
 				1582CFD519AF7BEC0056BD40 /* main.m in Sources */,
 				1582D00219AF84AB0056BD40 /* TWRDemoObject.m in Sources */,
+				15BC5C1419AF98360020BDFF /* TWRSliderStackedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +523,7 @@
 				1582CFF919AF7BED0056BD40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1582CFFA19AF7BED0056BD40 /* Build configuration list for PBXNativeTarget "TWRPickerSliderTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +532,7 @@
 				1582CFFC19AF7BED0056BD40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

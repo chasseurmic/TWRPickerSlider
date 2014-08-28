@@ -24,7 +24,7 @@
     return self;
 }
 
-- (NSString *)pickerTitle {
+- (NSString *)twr_pickerTitle {
     return self.title;
 }
 

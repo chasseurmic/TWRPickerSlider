@@ -1,14 +1,14 @@
 //
-//  TWRSliderContainerView.m
+//  TWRPickerSliderHeaderView.m
 //  TWRPickerSlider
 //
 //  Created by Michelangelo Chasseur on 28/08/14.
 //  Copyright (c) 2014 Touchware. All rights reserved.
 //
 
-#import "TWRSliderContainerView.h"
+#import "TWRPickerSliderHeaderView.h"
 
-@implementation TWRSliderContainerView
+@implementation TWRPickerSliderHeaderView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,15 +27,5 @@
     // Drawing code
 }
 */
-
--(id)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    UIView *hitView = [super hitTest:point withEvent:event];
-    if (hitView == self){
-        return nil;
-    }
-    else {
-        return hitView;
-    }
-}
 
 @end

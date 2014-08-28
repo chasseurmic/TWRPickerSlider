@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TWRPickerSlider.h"
 
-@interface TWRDemoObject : NSObject <TWRPickerSliderDataDelegate>
+@interface TWRDemoObject : NSObject <TWRPickerSliderDatasource>
 
 - (instancetype)initWithTitle:(NSString *)title;
 
