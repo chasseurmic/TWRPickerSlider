@@ -42,6 +42,10 @@ typedef NS_ENUM(NSUInteger, TWRPickerSliderPosition) {
 @property (strong, nonatomic) NSString *leftText;
 @property (strong, nonatomic) NSString *rightText;
 
+// Text color
+@property (strong, nonatomic) UIColor *leftTextColor;
+@property (strong, nonatomic) UIColor *rightTextColor;
+
 // Picker position
 @property (assign, nonatomic) TWRPickerSliderPosition position;
 @property (assign, nonatomic) TWRPickerSliderType type;
