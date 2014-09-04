@@ -104,7 +104,7 @@
             break;
             
         case TWRPickerSliderPositionTop: {
-            self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), self.topPadding, CGRectGetWidth(newSuperview.frame), PICKER_INVISIBLE_HEIGHT + PICKER_DEFAULT_VISIBLE_HEIGHT * self.sliders.count + self.topPadding);
+            self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), self.topPadding, CGRectGetWidth(newSuperview.frame), [self verticalSpacing] + PICKER_DEFAULT_VISIBLE_HEIGHT * self.sliders.count + self.topPadding);
             
             [_sliders enumerateObjectsUsingBlock:^(TWRPickerSlider *slider, NSUInteger idx, BOOL *stop) {
                 CGRect containerFrame = CGRectMake(0, PICKER_DEFAULT_VISIBLE_HEIGHT * idx, CGRectGetWidth(newSuperview.frame), verticalSpacing);

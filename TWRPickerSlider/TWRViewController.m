@@ -82,6 +82,7 @@
     
     TWRSliderStackedView *stack = [[TWRSliderStackedView alloc] initWithPosition:TWRPickerSliderPositionTop topPadding:20];
 //    TWRSliderStackedView *stack = [[TWRSliderStackedView alloc] initWithTabBar];
+    stack.type = TWRPickerSliderTypeDatePicker;
     stack.sliders = @[slider1, slider2, slider3];
     [self.view addSubview:stack];
 }
