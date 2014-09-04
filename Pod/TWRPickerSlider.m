@@ -198,9 +198,7 @@
                     self.transform = CGAffineTransformIdentity;
                 } completion:^void(BOOL finished) {
                     self.open = !self.open;
-                    if ([self.delegate respondsToSelector:@selector(objectSelected:sender:)]) {
-                        [self.delegate objectSelected:self.selectedObject sender:self];
-                    }
+                    [self sendDelegateMessage];
                 }];
             }
         }
