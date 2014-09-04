@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TWRPickerSlider.h"
 
 @interface TWRSliderStackedView : UIView
 
-- (instancetype)initWithBottomPadding:(NSUInteger)padding;
-- (instancetype)initWithTabBar;
+// Picker position
+@property (assign, nonatomic) TWRPickerSliderType type;
 
 @property (strong, nonatomic) NSArray *sliders;
+
+- (instancetype)initWithPosition:(TWRPickerSliderPosition)position;
+- (instancetype)initWithPosition:(TWRPickerSliderPosition)position bottomPadding:(NSUInteger)padding;
+- (instancetype)initWithPosition:(TWRPickerSliderPosition)position topPadding:(NSUInteger)padding;
+- (instancetype)initWithTabBar;
 
 @end
