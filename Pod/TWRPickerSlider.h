@@ -8,6 +8,16 @@
 
 #define PICKER_DEFAULT_VISIBLE_HEIGHT 44
 
+typedef NS_ENUM(NSUInteger, TWRPickerSliderType) {
+    TWRPickerSliderTypeCustomObjects,
+    TWRPickerSliderTypeDatePicker
+};
+
+typedef NS_ENUM(NSUInteger, TWRPickerSliderPosition) {
+    TWRPickerSliderPositionBottom,
+    TWRPickerSliderPositionTop
+};
+
 #import <UIKit/UIKit.h>
 @class TWRPickerSlider;
 
@@ -17,6 +27,7 @@
 
 @protocol TWRPickerSliderDelegate <NSObject>
 - (void)objectSelected:(id<TWRPickerSliderDatasource>)selectedObject sender:(TWRPickerSlider *)sender;
+- (void)dateSelected:(NSDate *)selectedDate sender:(TWRPickerSlider *)sender;
 @end
 
 @interface TWRPickerSlider : UIView
@@ -30,5 +41,12 @@
 // Strings for header view
 @property (strong, nonatomic) NSString *leftText;
 @property (strong, nonatomic) NSString *rightText;
+
+// Picker position
+@property (assign, nonatomic) TWRPickerSliderPosition position;
+@property (assign, nonatomic) TWRPickerSliderType type;
+
+- (instancetype)initWithFrame:(CGRect)frame visibleHeight:(NSUInteger)visibleHeight;
+- (instancetype)initWithType:(TWRPickerSliderType)type;
 
 @end
