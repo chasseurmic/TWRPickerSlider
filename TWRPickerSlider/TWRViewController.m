@@ -13,6 +13,8 @@
 
 @interface TWRViewController () <TWRPickerSliderDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+
 @end
 
 @implementation TWRViewController
@@ -39,49 +41,55 @@
     slider1.leftText = @"Slider #1:";
     slider1.rightText = @"Select";
     
+    // Position
+    slider1.position = TWRPickerSliderPositionTop;
+    
+    // Type
+    slider1.type = TWRPickerSliderTypeDatePicker;
+    
     // Delegate
     slider1.delegate = self;
-    
+    [self.containerView addSubview:slider1];
     
     // Picker Slider 2
-    TWRPickerSlider *slider2 = [[TWRPickerSlider alloc] init];
-    
-    // Colors
-    slider2.mainColor = [UIColor grayColor];
-    slider2.secondaryColor = [UIColor whiteColor];
-    
-    // Objects for picker
-    slider2.pickerObjects = @[obj1, obj2, obj3];
-    
-    // Texts
-    slider2.leftText = @"Slider #2:";
-    slider2.rightText = @"Select";
-    
-    // Delegate
-    slider2.delegate = self;
-
-    
-    // Picker Slider 1
-    TWRPickerSlider *slider3 = [[TWRPickerSlider alloc] init];
-    
-    // Colors
-    slider3.mainColor = [UIColor darkGrayColor];
-    slider3.secondaryColor = [UIColor whiteColor];
-    
-    // Objects for picker
-    slider3.pickerObjects = @[obj1, obj2, obj3];
-    
-    // Texts
-    slider3.leftText = @"Slider #3:";
-    slider3.rightText = @"Select";
-    
-    // Delegate
-    slider3.delegate = self;
-    
-    
-    TWRSliderStackedView *stack = [[TWRSliderStackedView alloc] initWithTabBar];
-    stack.sliders = @[slider1, slider2, slider3];
-    [self.view addSubview:stack];
+//    TWRPickerSlider *slider2 = [[TWRPickerSlider alloc] init];
+//    
+//    // Colors
+//    slider2.mainColor = [UIColor grayColor];
+//    slider2.secondaryColor = [UIColor whiteColor];
+//    
+//    // Objects for picker
+//    slider2.pickerObjects = @[obj1, obj2, obj3];
+//    
+//    // Texts
+//    slider2.leftText = @"Slider #2:";
+//    slider2.rightText = @"Select";
+//    
+//    // Delegate
+//    slider2.delegate = self;
+//
+//    
+//    // Picker Slider 1
+//    TWRPickerSlider *slider3 = [[TWRPickerSlider alloc] init];
+//    
+//    // Colors
+//    slider3.mainColor = [UIColor darkGrayColor];
+//    slider3.secondaryColor = [UIColor whiteColor];
+//    
+//    // Objects for picker
+//    slider3.pickerObjects = @[obj1, obj2, obj3];
+//    
+//    // Texts
+//    slider3.leftText = @"Slider #3:";
+//    slider3.rightText = @"Select";
+//    
+//    // Delegate
+//    slider3.delegate = self;
+//    
+//    
+//    TWRSliderStackedView *stack = [[TWRSliderStackedView alloc] initWithTabBar];
+//    stack.sliders = @[slider1, slider2, slider3];
+//    [self.view addSubview:stack];
 }
 
 - (void)objectSelected:(id<TWRPickerSliderDatasource>)selectedObject sender:(TWRPickerSlider *)sender{
