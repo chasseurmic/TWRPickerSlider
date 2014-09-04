@@ -63,6 +63,9 @@
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
+    if (!newSuperview) {
+        return;
+    }
     newSuperview.userInteractionEnabled = YES;
     self.backgroundColor = self.mainColor;
     
@@ -73,75 +76,78 @@
     self.header = [nibViews objectAtIndex:0];
     self.header.leftLabel.text = self.leftText;
     self.header.rightLabel.text = self.rightText;
-    self.header.leftLabel.textColor = self.secondaryColor;
-    self.header.rightLabel.textColor = self.secondaryColor;
+    self.header.leftLabel.textColor = self.leftTextColor ? self.leftTextColor : self.secondaryColor;
+    self.header.rightLabel.textColor = self.rightTextColor ? self.rightTextColor : self.secondaryColor;
     
     UIImage *headerImage = [[UIImage imageNamed:@"input_icon_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self.header.imageView setImage:headerImage];
     self.header.imageView.tintColor = self.secondaryColor;
-    [self addSubview:self.header];
     
     // Button
     self.button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(newSuperview.frame), self.visibleHeight)];
     [self.button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.button];
     
-    switch (self.position) {
-            //*** BOTTOM ***//
-        case TWRPickerSliderPositionBottom: {
-            
-            // Picker
-            CGRect rect = CGRectMake(0, self.visibleHeight, CGRectGetWidth(newSuperview.frame), CGRectGetHeight(self.frame) - self.visibleHeight);
-            switch (self.type) {
-                case TWRPickerSliderTypeCustomObjects: {
-                    self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetHeight(newSuperview.frame) - self.visibleHeight, CGRectGetWidth(newSuperview.frame), PICKER_CUSTOM_HEIGHT);
-                    [self configurePickerWithRect:rect];
+    // Add a small delay to prevent adding to view before init has finished
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        switch (self.position) {
+                //*** BOTTOM ***//
+            case TWRPickerSliderPositionBottom: {
+                
+                // Picker
+                CGRect rect = CGRectMake(0, self.visibleHeight, CGRectGetWidth(newSuperview.frame), CGRectGetHeight(self.frame) - self.visibleHeight);
+                switch (self.type) {
+                    case TWRPickerSliderTypeCustomObjects: {
+                        self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetHeight(newSuperview.frame) - self.visibleHeight, CGRectGetWidth(newSuperview.frame), PICKER_CUSTOM_HEIGHT);
+                        [self configurePickerWithRect:rect];
+                    }
+                        break;
+                        
+                    case TWRPickerSliderTypeDatePicker: {
+                        self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetHeight(newSuperview.frame) - self.visibleHeight, CGRectGetWidth(newSuperview.frame), PICKER_DATE_HEIGHT);
+                        [self configureDatePickerWithRect:rect];
+                    }
+                        break;
+                        
+                    default:
+                        break;
                 }
-                    break;
-                    
-                case TWRPickerSliderTypeDatePicker: {
-                    self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetHeight(newSuperview.frame) - self.visibleHeight, CGRectGetWidth(newSuperview.frame), PICKER_DATE_HEIGHT);
-                    [self configureDatePickerWithRect:rect];
-                }
-                    break;
-                    
-                default:
-                    break;
             }
-        }
-            break;
-            
-            //*** TOP ***//
-        case TWRPickerSliderPositionTop: {
-
-            // Picker
-            CGRect rect = CGRectMake(0, 0, CGRectGetWidth(newSuperview.frame), CGRectGetHeight(self.frame) - self.visibleHeight);
-            switch (self.type) {
-                case TWRPickerSliderTypeCustomObjects: {
-                    self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetMinY(newSuperview.frame) - PICKER_CUSTOM_HEIGHT + self.visibleHeight, CGRectGetWidth(newSuperview.frame), PICKER_CUSTOM_HEIGHT);
-                    [self configurePickerWithRect:rect];
+                break;
+                
+                //*** TOP ***//
+            case TWRPickerSliderPositionTop: {
+                
+                // Picker
+                CGRect rect = CGRectMake(0, 0, CGRectGetWidth(newSuperview.frame), CGRectGetHeight(self.frame) - self.visibleHeight);
+                switch (self.type) {
+                    case TWRPickerSliderTypeCustomObjects: {
+                        self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), 44 - PICKER_CUSTOM_HEIGHT, CGRectGetWidth(newSuperview.frame), PICKER_CUSTOM_HEIGHT);
+                        [self configurePickerWithRect:rect];
+                    }
+                        break;
+                        
+                    case TWRPickerSliderTypeDatePicker: {
+                        self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), 44 - PICKER_DATE_HEIGHT, CGRectGetWidth(newSuperview.frame), PICKER_DATE_HEIGHT);
+                        [self configureDatePickerWithRect:rect];
+                    }
+                        break;
+                        
+                    default:
+                        break;
                 }
-                    break;
-                    
-                case TWRPickerSliderTypeDatePicker: {
-                    self.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetMinY(newSuperview.frame) - PICKER_DATE_HEIGHT + self.visibleHeight, CGRectGetWidth(newSuperview.frame), PICKER_DATE_HEIGHT);
-                    [self configureDatePickerWithRect:rect];
-                }
-                    break;
-                    
-                default:
-                    break;
+                
+                self.header.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetHeight(self.frame) - 44, CGRectGetWidth(newSuperview.frame), self.visibleHeight);
+                self.button.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetHeight(self.frame) - 44, CGRectGetWidth(newSuperview.frame), self.visibleHeight);
+                
             }
-            
-            self.header.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetHeight(self.frame) - self.visibleHeight, CGRectGetWidth(newSuperview.frame), self.visibleHeight);
-            self.button.frame = CGRectMake(CGRectGetMinX(newSuperview.frame), CGRectGetHeight(self.frame) - self.visibleHeight, CGRectGetWidth(newSuperview.frame), self.visibleHeight);
-            
+                break;
+                
+            default:
+                break;
         }
-            break;
-            
-        default:
-            break;
-    }
+    });
+    [self addSubview:self.header];
+    [self addSubview:self.button];
 }
 
 - (void)configurePickerWithRect:(CGRect)rect {
@@ -237,6 +243,9 @@
 
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (row == 0) {
+        if (!self.secondaryColor) {
+            self.secondaryColor = [UIColor blackColor];
+        }
         return [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName:[self secondaryColor]}];
     } else {
         id<TWRPickerSliderDatasource>object = [self.pickerObjects objectAtIndex:row - 1];
@@ -263,7 +272,7 @@
 #pragma mark - Date picker
 
 - (void)dateChanged:(UIDatePicker *)sender {
-//    NSLog(@"date: %@", sender.date);
+    //    NSLog(@"date: %@", sender.date);
     self.selectedDate = sender.date;
     NSDateFormatter *df = [NSDateFormatter new];
     [df setTimeStyle:NSDateFormatterNoStyle];
